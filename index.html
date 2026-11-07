@@ -1,121 +1,226 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A little surprise 🤍</title>
+
+<title>A Little Surprise ❤️</title>
+
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh; padding: 16px;
-    display: grid; place-items: center;
-    background: #f5eee6;
-    font-family: Georgia, serif;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5eee6;
+  font-family: Georgia, serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  padding: 12px;
+  background: #fffaf4;
+  border: 6px solid #171311;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+}
+
+.tap-button {
+  display: inline-block;
+  margin: 18px 0;
+  padding: 14px 32px;
+  border: 2px solid #873f25;
+  border-radius: 50px;
+  background: #f8dfd5;
+  color: #873f25;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  animation: bounce 1.2s infinite;
+}
+
+.tap-button:active {
+  transform: scale(0.92);
+}
+
+.hint {
+  color: #a16b55;
+  font-size: 16px;
+}
+
+#surprise {
+  display: none;
+}
+
+#surprise.show {
+  display: block;
+  animation: appear 1s ease;
+}
+
+.message {
+  color: #873f25;
+  font-size: 25px;
+  line-height: 1.5;
+  margin: 18px 5px;
+}
+
+.music-text {
+  color: #873f25;
+  font-size: 18px;
+}
+
+audio {
+  width: 100%;
+  margin: 12px 0;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
-  .card {
-    width: min(100%, 440px);
-    background: #fffaf4;
-    border: 6px solid #171311;
-    border-radius: 17px;
-    padding: 12px;
-    text-align: center;
-    box-shadow: 0 10px 28px #00000018;
+  50% {
+    transform: translateY(-8px);
   }
-  .front-image {
-    display: block; width: 100%; height: auto;
-    border-radius: 3px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  .tap-btn {
-    margin: 16px 0 10px;
-    border: 2px solid #873f25;
-    border-radius: 999px;
-    background: #f8dfd5;
-    color: #873f25;
-    padding: 14px 34px;
-    font: bold 21px Georgia, serif;
-    cursor: pointer;
-    animation: bounce 1.25s ease-in-out infinite;
-    box-shadow: 0 5px 0 #873f2530;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .tap-btn:active { transform: scale(.94); animation: none; }
-  .tiny { color: #a16b55; font-size: 14px; margin: 3px 0 8px; }
-  #reveal { display: none; animation: reveal .8s ease both; }
-  #reveal img {
-    width: 100%; height: auto; display: block;
-    border-radius: 4px; margin: 5px auto 12px;
-  }
-  .message {
-    color: #873f25; font-size: clamp(22px, 6vw, 29px);
-    line-height: 1.45; font-style: italic; margin: 14px 5px;
-  }
-  .music-label { color: #873f25; font-size: 18px; margin: 10px 0; }
-  audio { width: 100%; margin: 8px 0 12px; }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    45% { transform: translateY(-8px); }
-    65% { transform: translateY(0); }
-    80% { transform: translateY(-3px); }
-  }
-  @keyframes reveal {
-    from { opacity: 0; transform: translateY(15px) scale(.96); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
+}
 </style>
 </head>
-<body>
-  <main class="card">
-    <section id="front">
-      <img class="front-image" src="/front-page.png" alt="Kabhi has bhi liya karo ji">
-      <button class="tap-btn" id="tapButton">Tap here 🤍</button>
-      <p class="tiny">Bas ek tap… 👀</p>
-    </section>
 
-    <section id="reveal">
-      <img src="/surprise-photo.png" alt="Good morning surprise">
-      <div class="message"> Good morning, Kriy ansh! ☀️<br>Ab toh has do ji 🤍</div>
-      <div class="music-label">♫ A little song for you ♡</div>
-      <audio id="song" src="/happy-diwali.mp3" loop controls></audio>
-    </section>
-  </main>
+<body>
+
+<div class="card">
+
+  <!-- FRONT PAGE -->
+  <div id="front">
+
+    <img
+      class="photo"
+      src="./front-page.png"
+      alt="Kabhi has bhi liya karo ji"
+    >
+
+    <button class="tap-button" id="tapButton">
+      Tap here 🤍
+    </button>
+
+    <p class="hint">Bas ek tap... 👀</p>
+
+  </div>
+
+  <!-- SURPRISE PHOTO AND SONG -->
+  <div id="surprise">
+
+    <img
+      class="photo"
+      src="./surprise-photo.png"
+      alt="Good morning surprise"
+    >
+
+    <div class="message">
+      Hehe... Good morning Kriy ansh! ☀️<br>
+      Ab toh has do ji 🤍
+    </div>
+
+    <p class="music-text">
+      ♫ A little song for you ♡
+    </p>
+
+    <audio id="song" src="./happy-diwali.mp3" loop controls>
+    </audio>
+
+  </div>
+
+</div>
 
 <script>
-  const tapButton = document.getElementById("tapButton");
-  const front = document.getElementById("front");
-  const reveal = document.getElementById("reveal");
-  const song = document.getElementById("song");
 
-  // A tiny, gentle pop/boing sound made in-browser (no extra sound file needed).
-  function playTapSound() {
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-      const ctx = new AudioContext();
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = "sine";
-      oscillator.frequency.setValueAtTime(620, ctx.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(360, ctx.currentTime + 0.09);
-      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.14);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start();
-      oscillator.stop(ctx.currentTime + 0.15);
-      oscillator.onended = () => ctx.close();
-    } catch (e) {}
+const button = document.getElementById("tapButton");
+const front = document.getElementById("front");
+const surprise = document.getElementById("surprise");
+const song = document.getElementById("song");
+
+// Cute little pop sound
+function playPop() {
+  try {
+    const AudioContext =
+      window.AudioContext || window.webkitAudioContext;
+
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+    const volume = context.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(
+      600, context.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      300, context.currentTime + 0.12
+    );
+
+    volume.gain.setValueAtTime(
+      0.15, context.currentTime
+    );
+
+    volume.gain.exponentialRampToValueAtTime(
+      0.001, context.currentTime + 0.15
+    );
+
+    oscillator.connect(volume);
+    volume.connect(context.destination);
+
+    oscillator.start();
+    oscillator.stop(context.currentTime + 0.15);
+
+  } catch (error) {
+    console.log("Sound effect unavailable");
+  }
+}
+
+// Button click
+button.addEventListener("click", async function() {
+
+  playPop();
+
+  front.style.display = "none";
+
+  surprise.classList.add("show");
+
+  try {
+    await song.play();
+  } catch (error) {
+    // If autoplay is blocked, use the song player.
   }
 
-  tapButton.addEventListener("click", async () => {
-    playTapSound();
-    front.style.display = "none";
-    reveal.style.display = "block";
-    try {
-      await song.play();
-    } catch (e) {
-      // The music controls remain visible if the browser blocks autoplay.
-    }
-  });
+});
+
 </script>
+
 </body>
 </html>
